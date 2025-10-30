@@ -12,4 +12,10 @@ public class PaginaController {
         return "index.html";
     }
 
+    @GetMapping("/productos")
+    public String productos() {
+
+        return "productos.html";
+    }
+
 }
