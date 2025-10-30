@@ -9,13 +9,13 @@ public class PaginaController {
     @GetMapping("/")
     public String index() {
 
-        return "index.html";
+        return "index";
     }
 
     @GetMapping("/productos")
     public String productos() {
 
-        return "productos.html";
+        return "productos";
     }
 
 }
