@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VALLOIR - Acceso a Clientes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <style>
+        /* Estilo Mínimo: Solo para asegurar el fondo negro y centrado vertical */
+        body {
+            background-color: #000; /* Fondo negro puro */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .auth-main {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+        }
+        /* Ajuste de color para la tarjeta en modo oscuro */
+        .card-dark-custom {
+            background-color: #111;
+            border-color: #333;
+            color: white;
+        }
+    </style>
+</head>
+<body data-bs-theme="dark"> <header>
+    <nav class="navbar navbar-expand-lg bg-dark border-bottom border-secondary p-3">
+        <div class="container-fluid mx-5">
+            <a class="navbar-brand fw-bold text-white" href="#">VALLOIR</a>
+        </div>
+    </nav>
+</header>
+
+<main class="auth-main">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-5">
+                <div class="card shadow-lg p-4 p-md-5 card-dark-custom">
+                    <h2 class="text-center mb-4 text-uppercase fw-light">Acceso a Cliente</h2>
+
+                    <ul class="nav nav-pills nav-fill mb-4" id="pills-tab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active rounded-0" id="login-tab" data-bs-toggle="pill" data-bs-target="#login" type="button" role="tab" aria-controls="login" aria-selected="true">
+                                INICIAR SESIÓN
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link rounded-0" id="register-tab" data-bs-toggle="pill" data-bs-target="#register" type="button" role="tab" aria-controls="register" aria-selected="false">
+                                REGISTRARSE
+                            </button>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content" id="pills-tabContent">
+
+                        <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+                            <form>
+                                <div class="mb-3">
+                                    <input type="email" class="form-control" placeholder="Correo Electrónico" required>
+                                </div>
+                                <div class="mb-4">
+                                    <input type="password" class="form-control" placeholder="Contraseña" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100 mb-3">Entrar</button>
+                                <div class="text-end">
+                                    <a href="#" class="text-decoration-none text-secondary small">¿Olvidaste tu contraseña?</a>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
+                            <form>
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" placeholder="Nombre de Usuario">
+                                </div>
+                                <div class="mb-3">
+                                    <input type="email" class="form-control" placeholder="Correo Electrónico" required>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="password" class="form-control" placeholder="Contraseña" required>
+                                </div>
+                                <div class="mb-4">
+                                    <input type="password" class="form-control" placeholder="Confirmar Contraseña" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100">Crear Cuenta VALLOIR</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</body>
+</html>
