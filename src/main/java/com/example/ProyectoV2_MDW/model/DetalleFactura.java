@@ -23,4 +23,12 @@ public class DetalleFactura {
     private int cantidad;
     private BigDecimal precioUnitario;
     private BigDecimal subtotal;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "factura_id", nullable = false)
+    private Factura factura;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "producto_id", nullable = false)
+    private Producto producto;
 }

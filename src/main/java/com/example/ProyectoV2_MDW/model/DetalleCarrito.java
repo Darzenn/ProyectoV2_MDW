@@ -18,5 +18,11 @@ public class DetalleCarrito {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private int cantidad;
+    private int subtotal;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "producto_id", nullable = false)
+    private Carrito carrito;
 
 }
