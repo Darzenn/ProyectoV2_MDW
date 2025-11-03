@@ -2,9 +2,8 @@ package com.example.ProyectoV2_MDW.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -13,10 +12,9 @@ import java.util.ArrayList;
 
 @Entity
 @Table(name = "facturas")
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
 public class Factura {
 
     @Id
