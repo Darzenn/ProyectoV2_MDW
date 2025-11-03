@@ -21,7 +21,10 @@ public class Usuario {
     private Long id;
 
     private String nombre;
+
+    @Column(unique = true, nullable = false)
     private String correo;
+
     private String contrasena;
     private String direccion;
 
@@ -34,6 +37,12 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Resena> resenas;
 
-
+    //consstructor para crear el usuario
+    public Usuario(String nombre, String correo, String contrasena, String direccion) {
+        this.nombre = nombre;
+        this.correo = correo;
+        this.contrasena = contrasena;
+        this.direccion = direccion;
+    }
 
 }
