@@ -9,6 +9,7 @@ import lombok.Setter;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.ArrayList;
 
 @Entity
 @Table(name = "facturas")
@@ -25,10 +26,16 @@ public class Factura {
     private LocalDateTime fecha;
     private BigDecimal total;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
 
     @OneToMany(mappedBy = "factura", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<DetalleFactura> detallesFactura;
+    private List<DetalleFactura> detallesFactura= new ArrayList<>();
+
+    //metodos
+    public void addDetalle(DetalleFactura detalle) {
+        detallesFactura.add(detalle);
+        detalle.setFactura(this);
+    }
 }

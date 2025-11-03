@@ -27,22 +27,23 @@
                     <li class="nav-item"><a class="nav-link" href="#productos">Productos</a></li>
                     <li class="nav-item"><a class="nav-link" href="#promocion">Promoción</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
-                    <li class="nav-item">
+                    <li class="nav-item" th:if="${session.usuarioLogueado == null}">
                         <a class="nav-link text-white" href="#" data-bs-toggle="modal"
                             data-bs-target="#loginModal">Iniciar sesión</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="/register">Registrarse</a>
+
+                    <li class="nav-item d-flex align-items-center me-2" th:if="${session.usuarioLogueado != null}">
+                        <span class="nav-link text-white">
+                            ¡Bienvenido, <b th:text="${session.usuarioLogueado.nombre}">Usuario</b>!
+                        </span>
                     </li>
-                    <li class="nav-item d-flex align-items-center me-2">
-                        <span class="nav-link text-white">¡Bienvenido, <b>Nombre Usuario</b>!</span>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white btn btn-outline-danger" href="/logout">Cerrar Sesión</a>
-                    </li>
+                    <li class="nav-item" th:if="${session.usuarioLogueado != null}">
+                        <a class="nav-link text-white btn btn-outline-danger" th:href="@{/logout}">Cerrar Sesión</a>
+                    </li>       
+                    
                 </ul>
 
-                <div id="carrito-flotante" class="carrito-flotante ms-5">
+                <div id="carrito-flotante" class="carrito-flotante ms-5" th:if="${session.usuarioLogueado != null}">
                     <button class="btn btn-link nav-link" type="button" data-bs-toggle="offcanvas"
                         data-bs-target="#offcanvasCarrito" aria-controls="offcanvasCarrito"
                         title="Ver Carrito de Compras">
@@ -62,17 +63,17 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="/login" method="POST">
+                    <form th:action="@{/login}" method="POST">
                         <div class="mb-3">
                             <label for="email" class="form-label">Correo electrónico</label>
-                            <input type="email" class="form-control" id="email" name="email" required>
+                            <input type="email" class="form-control" id="correo" name="correo" required>
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" id="password" name="password" required>
+                            <input type="password" class="form-control" id="contrasena" name="contrasena" required>
                         </div>
                         <div class="mb-3">
-                            <p>¿No tienes una cuenta? <a href="/register" class="link-secondary">Regístrate</a></p>
+                            <p>¿No tienes una cuenta? <a th:href="@{/registro}" class="link-secondary">Regístrate</a></p>
                         </div>
                         <button type="submit" class="btn btn-dark w-100">Ingresar</button>
                     </form>

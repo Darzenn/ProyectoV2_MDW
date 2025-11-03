@@ -41,7 +41,7 @@
                                 data-bs-target="#loginModal">Iniciar sesión</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="register.html">Registrarse</a>
+                            <a class="nav-link text-white" th:href="@{/registro}">Registrarse</a>
                         </li>
                     </ul>
                 </div>
@@ -57,17 +57,17 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="login.html" method="POST">
+                        <form th:action="@{/login}" method="POST">
                             <div class="mb-3">
                                 <label for="email" class="form-label">Correo electrónico</label>
-                                <input type="email" class="form-control" id="email" name="email" required>
+                                <input type="email" class="form-control" id="correo" name="correo" required>
                             </div>
                             <div class="mb-3">
                                 <label for="password" class="form-label">Contraseña</label>
-                                <input type="password" class="form-control" id="password" name="password" required>
+                                <input type="password" class="form-control" id="contrasena" name="contrasena" required>
                             </div>
                             <div class="mb-3">
-                                <p>¿No tienes una cuenta? <a href="register.html" class="link-secondary">Regístrate</a>
+                                <p>¿No tienes una cuenta? <a th:href="@{/registro}" class="link-secondary">Regístrate</a>
                                 </p>
                             </div>
                             <button type="submit" class="btn btn-dark w-100">Ingresar</button>
