@@ -39,14 +39,4 @@ public class Producto {
     @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Resena> resenas;
 
-    //constructor para crear el producto
-    public Producto(String nombre, String modelo, BigDecimal precio, int stock, String descripcion, String imagenUrl, Categoria categoria) {
-        this.nombre = nombre;
-        this.modelo = modelo;
-        this.precio = precio;
-        this.stock = stock;
-        this.descripcion = descripcion;
-        this.imagenUrl = imagenUrl;
-        this.categoria = categoria;
-    }
 }

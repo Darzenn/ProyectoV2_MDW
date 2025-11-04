@@ -20,6 +20,7 @@ public class ProductoService {
     @Autowired
     private CategoriaService categoriaService;
 
+    //usamos postconstruct para inicializar datos al arrancar la aplicacion
     @PostConstruct
     @Transactional
     public void inicializarDatosA(){
@@ -32,9 +33,9 @@ public class ProductoService {
     @Transactional
     public void inicializarDatos(){
         
-        Categoria deportivos = categoriaService.crearCategoria(new Categoria("Deportivos","relojes resistentes"));
+        Categoria deportivos = categoriaService.crearCategoria(new Categoria(null,"Deportivos","relojes resistentes",null));
         
-        productoRepository.save(new Producto("Reloj Deportivo","RD-001",new BigDecimal("50.00"), 15, "resistente al agua", "Reloj_Deportivo.png", deportivos));
+        productoRepository.save(new Producto(null,"Reloj Deportivo","RD-001",new BigDecimal("50.00"), 15, "resistente al agua", "Reloj_Deportivo.png", deportivos,null,null,null));
     }
 
 
