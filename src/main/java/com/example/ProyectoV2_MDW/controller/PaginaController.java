@@ -1,7 +1,6 @@
 package com.example.ProyectoV2_MDW.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.ProyectoV2_MDW.model.Usuario;
 import com.example.ProyectoV2_MDW.services.UsuarioService;
@@ -83,5 +82,7 @@ public class PaginaController {
         redirectAttributes.addFlashAttribute("mensajeExito", "Has cerrado sesión exitosamente.");
         return "redirect:/";
     }
+
+
 
 }
