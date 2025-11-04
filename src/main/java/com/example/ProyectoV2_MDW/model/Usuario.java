@@ -2,18 +2,16 @@ package com.example.ProyectoV2_MDW.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.util.List;
 
 @Entity
 @Table(name = "usuarios")
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
 public class Usuario {
 
     @Id
@@ -21,7 +19,10 @@ public class Usuario {
     private Long id;
 
     private String nombre;
+
+    @Column(unique = true, nullable = false)
     private String correo;
+
     private String contrasena;
     private String direccion;
 
@@ -34,6 +35,12 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Resena> resenas;
 
-
+    //consstructor para crear el usuario
+    public Usuario(String nombre, String correo, String contrasena, String direccion) {
+        this.nombre = nombre;
+        this.correo = correo;
+        this.contrasena = contrasena;
+        this.direccion = direccion;
+    }
 
 }

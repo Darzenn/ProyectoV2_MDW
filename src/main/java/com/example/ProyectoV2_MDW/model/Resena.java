@@ -2,18 +2,16 @@ package com.example.ProyectoV2_MDW.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.time.LocalDateTime;
-
+//prueba
 @Entity
 @Table(name = "resenas")
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
 public class Resena {
 
     @Id
