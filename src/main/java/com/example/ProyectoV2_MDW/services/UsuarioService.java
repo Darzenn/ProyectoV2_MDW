@@ -52,17 +52,4 @@ public class UsuarioService {
         return Optional.empty(); // el login fallo
     }
 
-    // Obtener usuario por ID
-    @Transactional(readOnly = true)
-    public Optional<Usuario> obtenerUsuarioPorId(Long id) {
-        return usuarioRepository.findById(id);
-    }
-
-    // Obtener usuario por correo
-    @Transactional(readOnly = true)
-    public Optional<Usuario> obtenerUsuarioPorCorreo(String correo) {
-        return usuarioRepository.findByCorreo(correo);
-    }
-
-
 }
