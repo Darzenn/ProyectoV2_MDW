@@ -34,28 +34,21 @@
 
             <!-- Carrito -->
             <section id="resumen-carrito" class="col-md-6">
-                <div class="card shadow-lg bg-dark bg-opacity-75 text-light">
-                    <div class="card-body">
-                        <h2 class="h4 mb-3">🧾 Detalle de Productos</h2>
-                        <ul id="lista-productos" class="list-group list-group-flush">
-                            <li class="list-group-item bg-transparent text-light border-light">
-                                <span class="fw-bold">1</span> x Reloj Clásico
-                                (S/ 250.00 c/u)
-                                <br>
-                                <span class="fw-bold">Subtotal: S/ 250.00</span>
-                            </li>
-                            <li class="list-group-item bg-transparent text-light border-light">
-                                <span class="fw-bold">2</span> x Reloj Moderno
-                                (S/ 300.00 c/u)
-                                <br>
-                                <span class="fw-bold">Subtotal: S/ 600.00</span>
-                            </li>
-                        </ul>
-                        <p id="total-final" class="fw-bold fs-5 mt-3 pt-2 border-top">
-                            Total General: S/ 850.00
-                        </p>
-                    </div>
-                </div>
+                <ul id="lista-productos" class="list-group list-group-flush">
+                    <li th:each="detalle : ${carrito.detalles}" class="list-group-item bg-transparent text-light border-light">
+                        <span class="fw-bold" th:text="${detalle.cantidad}"></span> x
+                        <span th:text="${detalle.producto.nombre}"></span>
+                        (<span th:text="'S/ ' + ${detalle.producto.precio} + ' c/u'"></span>)
+                        <br>
+                        <span class="fw-bold">Subtotal: S/ <span th:text="${detalle.cantidad * detalle.producto.precio}"></span></span>
+                    </li>
+                </ul>
+
+                <p id="total-final" class="fw-bold fs-5 mt-3 pt-2 border-top">
+                    Total General: S/ <span th:text="${#numbers.formatDecimal(
+                    carrito.detalles.stream().mapToDouble(det -> det.cantidad * det.producto.precio).sum(), 1, 'COMMA', 2, 'POINT')}"></span>
+                </p>
+
             </section>
 
             <!-- Formulario de pago -->
