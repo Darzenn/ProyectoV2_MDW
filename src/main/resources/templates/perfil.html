@@ -33,7 +33,7 @@
                     <a class="nav-link text-white" href="#footer">Contacto</a>
                 </li>
 
-                <li class="nav-item" th:if="${session.usuarioLogueado != null}">
+                <li class="nav-item" th:if="${usuarioLogueado != null}">
                     <a class="nav-link text-white btn btn-outline-danger" th:href="@{/logout}">Cerrar Sesión</a>
                 </li>
             </ul>

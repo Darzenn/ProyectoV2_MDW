@@ -32,22 +32,22 @@
                        data-bs-target="#loginModal">Iniciar sesión</a>
                 </li>
 
-                <li class="nav-item" th:if="${session.usuarioLogueado == null}">
+                <li class="nav-item" th:if="${usuarioLogueado == null}">
                     <a class="nav-link text-white" th:href="@{/registro}">Registrarse</a>
                 </li>
 
-                <li class="nav-item d-flex align-items-center me-2" th:if="${session.usuarioLogueado != null}">
+                <li class="nav-item d-flex align-items-center me-2" th:if="${usuarioLogueado != null}">
                         <span class="nav-link text-white">
-                            ¡Bienvenido, <b th:text="${session.usuarioLogueado.nombre}"></b>!
+                            ¡Bienvenido, <b th:text="${usuarioLogueado.nombre}"></b>!
                         </span>
                 </li>
-                <li class="nav-item" th:if="${session.usuarioLogueado != null}">
+                <li class="nav-item" th:if="${usuarioLogueado != null}">
                     <a class="nav-link text-white btn btn-outline-danger" th:href="@{/logout}">Cerrar Sesión</a>
                 </li>
 
             </ul>
 
-            <div id="carrito-flotante" class="carrito-flotante ms-5" th:if="${session.usuarioLogueado != null}">
+            <div id="carrito-flotante" class="carrito-flotante ms-5" th:if="${usuarioLogueado != null}">
                 <button class="btn btn-link nav-link" type="button" data-bs-toggle="offcanvas"
                         data-bs-target="#offcanvasCarrito" aria-controls="offcanvasCarrito"
                         title="Ver Carrito de Compras">

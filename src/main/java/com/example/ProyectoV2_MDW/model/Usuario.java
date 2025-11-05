@@ -35,12 +35,4 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Resena> resenas;
 
-    //consstructor para crear el usuario
-    public Usuario(String nombre, String correo, String contrasena, String direccion) {
-        this.nombre = nombre;
-        this.correo = correo;
-        this.contrasena = contrasena;
-        this.direccion = direccion;
-    }
-
 }
