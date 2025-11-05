@@ -41,11 +41,11 @@ public class ProductoService {
         productoRepository.save(new Producto(null,"Reloj Clasico","RC-001",new BigDecimal("80.00"), 10, "corread cuero", "Reloj_Clasico.png", clasicos,null,null,null));
         productoRepository.save(new Producto(null,"Reloj inteligente","RI-001",new BigDecimal("150.00"), 20, "Smartwatch, notificaciones inteligentes", "Reloj_Inteligente.png", inteligentes,null,null,null));
         productoRepository.save(new Producto(null,"Reloj con Correa de Acero","RCA-001",new BigDecimal("120.00"), 5, "Sumergible, resistente a golpes", "reloj_correa_acero.png", elegantes,null,null,null));
-        productoRepository.save(new Producto(null,"Reloj de muñeca","RM-002",new BigDecimal("150.00"), 8, "Comodo y resistente para el uso diario", "Reloj_Muñeca.png", deportivos,null,null,null));
+        productoRepository.save(new Producto(null,"Reloj de muñeca","RM-002",new BigDecimal("150.00"), 8, "Comodo y resistente para el uso diario", "Reloj_Muneca.png", deportivos,null,null,null));
         productoRepository.save(new Producto(null,"Reloj Digital","RD-002",new BigDecimal("300.00"), 4, "Pantalla digital moderno y funcional", "Reloj_Digital.png", inteligentes,null,null,null));
         productoRepository.save(new Producto(null,"Reloj para Damas","RPD-001",new BigDecimal("700.00"), 6, "Diseño elegante y sotisficado", "reloj mujer_1.png", elegantes,null,null,null));
         productoRepository.save(new Producto(null,"Reloj Deportivo Femenino","RDF-001",new BigDecimal("600.00"), 2, "Resistentes y ligeros", "reloj mujer_2.png", deportivos,null,null,null));
-        productoRepository.save(new Producto(null,"Reloj porta auriculares","RPA-001",new BigDecimal("850.00"), 12, "Diseño innovador ", "reloj_potaAuriculares.png", inteligentes,null,null,null));
+        productoRepository.save(new Producto(null,"Reloj porta auriculares","RPA-001",new BigDecimal("850.00"), 12, "Diseño innovador ", "reloj_potaAuriculares.jpg", inteligentes,null,null,null));
     }
 
 
