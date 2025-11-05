@@ -1,5 +1,6 @@
 package com.example.ProyectoV2_MDW.controller;
 
+import com.example.ProyectoV2_MDW.model.Usuario;
 import com.example.ProyectoV2_MDW.repository.UsuarioRepository;
 import com.example.ProyectoV2_MDW.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,14 +23,12 @@ public class PerfilUsuarioController {
     private UsuarioRepository usuarioRepository;
 
     @GetMapping("/{correo}")
-    public String perfilUsuarioView(@PathVariable String correo, Model model){
+    public String perfilUsuarioView(@PathVariable String correo, Model model) {
+        Usuario usuario = usuarioRepository.findByCorreo(correo)
+                .orElseThrow(() -> new NoSuchElementException("Usuario no encontrado"));
 
-        usuarioRepository.findByCorreo(correo)
-                .orElseThrow(()->new NoSuchElementException("Usuario no encontrado"));
-
+        model.addAttribute("usuario", usuario);
         return "perfil";
     }
-
-
 
 }
