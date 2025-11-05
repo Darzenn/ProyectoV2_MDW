@@ -1,12 +1,9 @@
 package com.example.ProyectoV2_MDW.controller;
 
 import org.springframework.stereotype.Controller;
-
-import com.example.ProyectoV2_MDW.model.Categoria;
 import com.example.ProyectoV2_MDW.model.Usuario;
 import com.example.ProyectoV2_MDW.services.ProductoService;
 import com.example.ProyectoV2_MDW.services.UsuarioService;
-import com.example.ProyectoV2_MDW.services.CategoriaService;
 import com.example.ProyectoV2_MDW.model.Producto;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +21,6 @@ public class PaginaController {
     private UsuarioService usuarioService;
     @Autowired
     private ProductoService productoService;
-    @Autowired
-    private CategoriaService categoriaService;
 
     @GetMapping("/")
     public String index(Model model, HttpSession session) {
@@ -45,10 +40,8 @@ public class PaginaController {
 
         //obtenemos productos y categorias
         List<Producto> productos = productoService.obtenerTodosLosProductos();
-        List<Categoria> categorias = categoriaService.obtenerTodasLasCategorias();
         //agregamos productos y categorias al modelo
         model.addAttribute("productos", productos);
-        model.addAttribute("categorias", categorias);
         
         return "productos";
     }

@@ -7,7 +7,7 @@ import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import java.util.Optional;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -48,21 +48,8 @@ public class ProductoService {
         productoRepository.save(new Producto(null,"Reloj porta auriculares","RPA-001",new BigDecimal("850.00"), 12, "Diseño innovador ", "reloj_potaAuriculares.jpg", inteligentes,null,null,null));
     }
 
-
-
-
     @Transactional(readOnly = true)
     public List<Producto> obtenerTodosLosProductos() {
         return productoRepository.findAll();
-    }
-
-     @Transactional(readOnly = true)
-    public Optional<Producto> obtenerProductoPorId(Long id) {
-        return productoRepository.findById(id);
-    }
-
-    @Transactional(readOnly = true)
-    public List<Producto> obtenerProductosPorCategoriaId(Long categoriaId) {
-        return productoRepository.findByCategoriaId(categoriaId);
     }
 }
