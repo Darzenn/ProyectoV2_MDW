@@ -27,8 +27,7 @@ public class UsuarioService {
         Carrito carritoNuevo = new Carrito();
         carritoNuevo.setUsuario(usuario);
         usuario.setCarrito(carritoNuevo);
-        
-        // Guardar usuario (el carrito se guardara automaticamente por CascadeType.ALL)
+
         return usuarioRepository.save(usuario);
     }
 
