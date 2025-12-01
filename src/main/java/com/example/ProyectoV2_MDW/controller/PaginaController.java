@@ -83,7 +83,4 @@ public class PaginaController {
         session.invalidate();
         return "redirect:/";
     }
-
-
-
 }
