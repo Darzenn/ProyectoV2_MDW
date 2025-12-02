@@ -1,6 +1,7 @@
 package com.example.ProyectoV2_MDW.controller;
 
 import com.example.ProyectoV2_MDW.model.Carrito;
+import com.example.ProyectoV2_MDW.model.Factura;
 import com.example.ProyectoV2_MDW.model.Usuario;
 import com.example.ProyectoV2_MDW.services.CarritoService;
 import com.example.ProyectoV2_MDW.services.ProductoService;
@@ -8,6 +9,7 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/carrito")
@@ -84,5 +86,22 @@ public class CarritoController {
         Carrito carrito = carritoService.obtenerCarritoDeUsuario(usuario.getId());
         model.addAttribute("carrito", carrito);
         return "zonapago";
+    }
+
+    // Confirmar compra
+    @PostMapping("/confirmar-compra")
+    public String confirmarCompra(HttpSession session, RedirectAttributes redirectAttributes) {
+        Usuario usuario = (Usuario) session.getAttribute("usuarioLogueado");
+        if (usuario == null) return "redirect:/login";
+
+        try {
+            Factura factura = carritoService.procesarCompra(usuario.getId());
+            redirectAttributes.addFlashAttribute("mensajeExito", 
+                "¡Compra realizada con éxito! Factura N° " + factura.getId());
+            return "redirect:/carrito/pago";  
+        } catch (IllegalArgumentException e) {
+            redirectAttributes.addFlashAttribute("mensajeError", e.getMessage());
+            return "redirect:/carrito/pago";
+        }
     }
 }

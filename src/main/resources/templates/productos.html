@@ -195,17 +195,43 @@
         <h5 class="offcanvas-title" id="offcanvasCarritoLabel">🛒 Tu Carrito de Compras</h5>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
-
-    <div th:if="${carrito != null}">
-        <ul class="list-group">
-            <li th:each="detalle : ${carrito.items}"
-                class="list-group-item d-flex justify-content-between align-items-center">
-                <span th:text="${detalle.producto.nombre}"></span>
-                <span>S/ <span th:text="${detalle.producto.precio}"></span></span>
-            </li>
-        </ul>
+    <div class="offcanvas-body">
+        <div th:if="${carrito != null && !carrito.items.isEmpty()}">
+            <ul class="list-group mb-3">
+                <li th:each="detalle : ${carrito.items}"
+                    class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <strong th:text="${detalle.producto.nombre}"></strong>
+                        <br>
+                        <small class="text-muted">Cantidad: <span th:text="${detalle.cantidad}"></span></small>
+                        <br>
+                        <small>S/ <span th:text="${detalle.producto.precio}"></span> c/u</small>
+                    </div>
+                    <span class="badge bg-primary rounded-pill">
+                        S/ <span th:text="${detalle.subtotal}"></span>
+                    </span>
+                </li>
+            </ul>
+            
+            <!-- Total -->
+            <div class="border-top pt-3 mb-3">
+                <h5 class="text-end">
+                    Total: S/ <span th:text="${#aggregates.sum(carrito.items.![subtotal])}">0.00</span>
+                </h5>
+            </div>
+            
+            <!-- Botón Ir a Pagar -->
+            <div class="d-grid">
+                <a th:href="@{/carrito/pago}" class="btn btn-warning btn-lg">
+                    Continuar con la Compra
+                </a>
+            </div>
+        </div>
+        
+        <div th:if="${carrito == null || carrito.items.isEmpty()}">
+            <p class="text-center text-muted mt-4">Tu carrito está vacío</p>
+        </div>
     </div>
-
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

@@ -6,6 +6,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Service
 public class CarritoService {
@@ -14,15 +15,21 @@ public class CarritoService {
     private final ProductoRepository productoRepository;
     private final UsuarioRepository usuarioRepository;
     private final DetalleCarritoRepository detalleCarritoRepository;
+    private final FacturaRepository facturaRepository;
+    private final DetalleFacturaRepository detalleFacturaRepository;
 
     public CarritoService(CarritoRepository carritoRepository,
                           ProductoRepository productoRepository,
                           UsuarioRepository usuarioRepository,
-                          DetalleCarritoRepository detalleCarritoRepository) {
+                          DetalleCarritoRepository detalleCarritoRepository,
+                          FacturaRepository facturaRepository,
+                          DetalleFacturaRepository detalleFacturaRepository) {
         this.carritoRepository = carritoRepository;
         this.productoRepository = productoRepository;
         this.usuarioRepository = usuarioRepository;
         this.detalleCarritoRepository = detalleCarritoRepository;
+        this.facturaRepository = facturaRepository;
+        this.detalleFacturaRepository = detalleFacturaRepository;
     }
 
     // 🔹 Agregar producto al carrito
@@ -72,5 +79,47 @@ public class CarritoService {
     @Transactional
     public void eliminarDetalle(Long idDetalle) {
         detalleCarritoRepository.deleteById(idDetalle);
+    }
+
+    @Transactional
+    public Factura procesarCompra(Long idUsuario) {
+        Usuario usuario = usuarioRepository.findById(idUsuario)
+                .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado"));
+        
+        Carrito carrito = usuario.getCarrito();
+        if (carrito == null || carrito.getItems().isEmpty()) {
+            throw new IllegalArgumentException("El carrito está vacío");
+        }
+
+        // Crear la factura
+        Factura factura = new Factura();
+        factura.setUsuario(usuario);
+        factura.setFecha(LocalDateTime.now());
+        
+        BigDecimal total = BigDecimal.ZERO;
+        
+        // Pasar los items del carrito a la factura
+        for (DetalleCarrito detalle : carrito.getItems()) {
+            DetalleFactura detalleFactura = new DetalleFactura();
+            detalleFactura.setProducto(detalle.getProducto());
+            detalleFactura.setCantidad(detalle.getCantidad());
+            detalleFactura.setPrecioUnitario(detalle.getProducto().getPrecio());
+            detalleFactura.setSubtotal(detalle.getSubtotal());
+            
+            factura.addDetalle(detalleFactura);
+            total = total.add(detalle.getSubtotal());
+        }
+        
+        factura.setTotal(total);
+        
+        // Guardar la factura
+        facturaRepository.save(factura);
+        
+        // Vaciar el carrito
+        carrito.getItems().clear();
+        carritoRepository.save(carrito);
+        
+        return factura;
+
     }
 }

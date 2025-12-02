@@ -14,7 +14,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(auth -> auth
                         // Rutas públicas
-                        .requestMatchers("/", "/index","/carrito", "/perfil/**", "/registro", "/productos", "/login", "/logout").permitAll()
+                        .requestMatchers("/", "/index","/carrito/**", "/perfil/**", "/registro", "/productos", "/login", "/logout").permitAll()
                         // Cualquier otra requiere login
                         .anyRequest().authenticated()
                 )
