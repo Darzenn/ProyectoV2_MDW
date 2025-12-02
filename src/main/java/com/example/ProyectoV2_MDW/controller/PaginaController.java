@@ -61,7 +61,7 @@ public class PaginaController {
 
     //LOGINNNN
 
-    @PostMapping("/login")
+    @PostMapping("/autenticar")
     public String loginUsuario(@RequestParam String correo,
                                @RequestParam String contrasena,
                                HttpSession session,

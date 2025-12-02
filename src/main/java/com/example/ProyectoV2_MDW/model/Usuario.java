@@ -23,6 +23,7 @@ public class Usuario {
     @Column(unique = true, nullable = false)
     private String correo;
 
+    @Column(nullable = false, length = 255)
     private String contrasena;
     private String direccion;
 

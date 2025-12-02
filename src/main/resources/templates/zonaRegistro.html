@@ -68,7 +68,7 @@
                     <div class="tab-content" id="pills-tabContent">
 
                         <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
-                            <form th:action="@{/login}" method="post">
+                            <form th:action="@{/autenticar}" method="post">
                                 <div class="mb-3">
                                     <input type="email" class="form-control" name="correo" placeholder="Correo Electrónico" required>
                                 </div>
@@ -84,6 +84,7 @@
 
                         <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
                             <form th:action="@{/registro}" th:object="${usuario}" method="post">
+                                <input type="hidden" name="_csrf" th:value="${_csrf.token}">
                                 <div class="mb-3">
                                     <input type="text" class="form-control" placeholder="Nombre de Usuario" id="nombre"
                                     th:field="*{nombre}" required>
