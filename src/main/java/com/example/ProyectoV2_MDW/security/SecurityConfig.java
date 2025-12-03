@@ -3,12 +3,13 @@ package com.example.ProyectoV2_MDW.security;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
 @Configuration
 public class SecurityConfig {
-
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -19,19 +20,25 @@ public class SecurityConfig {
                         // Cualquier otra requiere login
                         .anyRequest().authenticated()
                 )
-                //.formLogin(form -> form
-                       // .loginPage("/registro")
-                       // .permitAll()
-                .formLogin(form -> form.disable()
+
+                .sessionManagement(session -> session
+                        // JWT usa Stateless, no sesiones HTTP tradicionales
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                )
+
+                .formLogin(form -> form
+                        .loginPage("/registro")
+                        .permitAll()
                 )
 
                 .logout(logout -> logout
                         .logoutUrl("/logout")
-                        .permitAll());
+                        .deleteCookies("jwt-token")
+                        .permitAll()
+                );
 
         return http.build();
     }
-    
 
     @Bean
     public PasswordEncoder passwordEncoder() {
